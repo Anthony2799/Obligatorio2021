@@ -19,6 +19,7 @@ from usuario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('show',views.show),
-    path('emp',views.emp),
+    path('show/',views.show),
+    path('emp/',views.emp),
+    path('cli/',views.cliR)
 ]
