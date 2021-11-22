@@ -5,3 +5,4 @@ class usuarioForm(forms.ModelForm):
     class Meta:
         model = Entidad
         fields = "__all__"
+        
