@@ -3,7 +3,8 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 import datetime
 
-from DAK.usuario.models import Entidad
+from usuario.models import Perfil_cliente
+from usuario.models import Entidad  
 
 
 
@@ -15,31 +16,24 @@ def alta_envio(request):
 
   
 def agregar_cliente(request):
-    context={}
-    if request.method =='POST':
-        estado=False 
-        cont= Entidad()
-        cont.numero_entidad = request.POST['']
-        cont.email=request.POST['email']
-        cont.comment=request.POST['comment']
-        cont.save()  
-
-    estado=True
-  
-    context={"estado":estado}
-    return render(request,'web/contact.html',context)
-    estado=False 
-
-    cont= Contact()
-    cont.name=request.POST['name']
-    cont.email=request.POST['email']
-    cont.comment=request.POST['comment']
-  
-    cont.save()
-    estado=True
-  
-    context={"estado":estado}
-
     
-  
- return render(request,'web/contact.html',context)
+    if request.method =='POST':
+        
+        ent = Entidad()
+        ent.numero_grupo = 0
+        ent.direccion = "casapueblo"
+        ent.email = request.POST['email']
+        ent.telefono = request.POST['tel']
+        ent.save()
+         
+        cont= Perfil_cliente()
+        cont.entidad_usuario = ent.numero_entidad
+        cont.nombre_usuario = request.POST['nombre']
+        cont.apellido_usuario = request.POST['apellido']
+        cont.documento_usuario = request.POST['documento']
+        
+        cont.save()  
+      
+    return render(request,'index.html')
+    
+ 

@@ -17,7 +17,7 @@ class Perfil_cliente(models.Model):
     documento_usuario = models.TextField(max_length=20,primary_key=True)
     fecha_creado = models.DateTimeField(auto_now_add=True)
     fecha_modficado = models.DateTimeField(auto_now=True) 
-    
+        
     
 
 
