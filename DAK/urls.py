@@ -20,6 +20,6 @@ from envio import views as views_envio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('AltaEnvio/',views_envio.alta_envio, name="home"),
+    path('AltaEnvio/',views_envio.alta_envio, name="RegistroEnvio"),
     path("alta_cliente/",views_envio.agregar_cliente , name="RegistroCliente"),
 ]

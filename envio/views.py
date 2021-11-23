@@ -12,7 +12,7 @@ from usuario.models import Entidad
 
 def alta_envio(request):
     
-    return render(request,'RegistroClientes.html')
+    return render(request,'RegistroEnvio.html')
 
   
 def agregar_cliente(request):
