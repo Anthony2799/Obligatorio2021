@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from usuario import views as views_usuarios
 from envio import views as views_envio
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AltaEnvio/',views_envio.alta_envio),
-  
+    path("alta_cliente/",views_envio.agregar_cliente)
 ]

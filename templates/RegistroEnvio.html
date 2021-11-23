@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="logoDak-removebg-preview.png" />
+  <title>Regitro Envio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBua8IMHpArijBxORZL1nHYlFiFcM0Hk2o"></script>
+</head>
+
+<body onload="InitMap();">
+  <nav class="navbar is-success">
+    <div class="navbar-brand">
+
+      <img src="logoDak-removebg-preview.png" width="130" height="40">
+
+    </div>
+
+    <div class="navbar-menu ">
+      <div class="navbar-start">
+        <a class="navbar-item" href="https://bulma.io/">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+            Clientes
+          </a>
+          <div class="navbar-dropdown is-boxed-success ">
+            <a class="navbar-item " href="https://bulma.io/documentation/overview/start/">
+              Nuevo Envio
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+              Modificar Envio
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+              Listar Envio
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+            Envios
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+              Realizar Envio
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+              Estado Envios
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+              Localizar Envios
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="column is-half is-offset-one-quarter">
+    <form class="box">
+      <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registro Cliente</p>
+      <br>
+
+      <div class="field">
+        <label class="label">Documento del emisor</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="docEmisor">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Documento del destinatario</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Apellido">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Direccion de destino</label>
+        <div class="control">
+          <div id="map-canvas" style="height: 400px; width: auto;"></div>
+
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <div id="map-canvas" style="height: 200px; width: auto;"></div>
+
+              <script type="text/javascript">
+          
+                  var strArray = [];
+           
+                  var draggablePolygon; function InitMap() {
+                      var location = new google.maps.LatLng(39.86232, -4.0694706);
+                      var mapOptions = {
+                          zoom: 7,
+                          center: location,
+                          mapTypeId: google.maps.MapTypeId.RoadMap
+                      };
+          
+          
+                      var map = new google.maps.Map(document.getElementById('map-canvas'),
+                          mapOptions);
+          
+                      var shapeCoordinates = [
+          
+                          new google.maps.LatLng(39.86232, -4.0694706),
+                          new google.maps.LatLng(39.86232, -4.0694706)
+                      ];
+                      // Construct the polygon
+                      draggablePolygon = new google.maps.Polygon({
+                          paths: shapeCoordinates,
+                          draggable: true,
+                          editable: true,
+                          strokeColor: '',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          fillColor: '#ADFF2F',
+                          fillOpacity: 0.5
+                      });
+                      draggablePolygon.setMap(map);
+                      google.maps.event.addListener(draggablePolygon, "dragend", Getpolygoncoordinates);
+                      google.maps.event.addListener(draggablePolygon.getPath(), "insert_at", Getpolygoncoordinates);
+                      google.maps.event.addListener(draggablePolygon.getPath(), "remove_at", Getpolygoncoordinates);
+                      google.maps.event.addListener(draggablePolygon.getPath(), "set_at", Getpolygoncoordinates);
+                  }
+          
+                  function Getpolygoncoordinates() {
+                      var len = draggablePolygon.getPath().getLength();
+                      strArray = [];
+                      for (var i = 0; i < len; i++) {
+                          strArray[strArray.length] = { Latitud: draggablePolygon.getPath().getAt(i).toUrlValue(5).split(",")[0], Longitud: draggablePolygon.getPath().getAt(i).toUrlValue(5).split(",")[1] };
+                      }
+          
+                  }
+              </script>
+        </div>
+      </div>
+
+
+      <div class="field">
+        <label class="label">Medio de pago</label>
+        <div class="control">
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                <span>Medios de Pago</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">
+                  Contado
+                </a>
+                <a class="dropdown-item">
+                  Debito
+                </a>
+                <a href="#" class="dropdown-item is-active">
+                  Credito
+                </a>
+                <a href="#" class="dropdown-item">
+                  Mercado Pago
+                </a>
+                <hr class="dropdown-divider">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <button class="button is-info is-outlined">Pagar</button>
+    </form>
+
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Copyright © 2021 Dak</strong>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
