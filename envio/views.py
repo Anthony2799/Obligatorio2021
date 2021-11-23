@@ -34,6 +34,6 @@ def agregar_cliente(request):
         
         cont.save()  
       
-    return render(request,'index.html')
+    return render(request,'RegistroClientes.html')
     
  
