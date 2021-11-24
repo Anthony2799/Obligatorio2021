@@ -1,0 +1,56 @@
+
+
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: content-box;
+  padding-left:100%;
+}
+.ticker {
+  animation-duration: 50s;
+  display:inline-block;
+  font: oblique bold 120% cursive;
+  padding-right: 100%;
+  white-space: nowrap;
+      -webkit-animation-iteration-count: infinite; 
+            animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+     -webkit-animation-name: ticker;
+           animation-name: ticker;
+      -webkit-animation-duration:$duration;
+            animation-duration:$duration;
+}
+
+}
+/* Animation Right Here */
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+
+
+ 
+

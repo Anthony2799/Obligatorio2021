@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+#traking
+
+def registro_traking(request):
+    
+    return render(request,'LocalizarPaquete.html')
