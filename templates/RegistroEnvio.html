@@ -5,80 +5,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="logoDak-removebg-preview.png" />
-  <script src="../static/js/mpas.js"></script>
   <title>Regitro Envio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBua8IMHpArijBxORZL1nHYlFiFcM0Hk2o"></script>
 </head>
 
-<body onload="InitMap();">
-   <nav class="navbar is-success">
-        <div class="navbar-brand">
-         
-            <img src="../static/imagenes/logoDaK.png"  width="120" height="32">
-         
-        </div>
-      
-        <div  class="navbar-menu ">
-          <div class="navbar-start">
-            <a class="navbar-item" href="{% url 'home' %}">
-              Home
-            </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-                Clientes
-              </a>
-              <div class="navbar-dropdown is-boxed-success ">
-                <a class="navbar-item " href="{% url 'RegistroCliente' %}">
-                  Agregar Cliente
-                </a>
-                <a class="navbar-item" href="">
-                  Modificar Cliente
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                  Listar Clientes
-                </a>
-             </div>   
-        </div>
-                
+<body onload="initMap();">
+  <nav class="navbar is-success">
+    <div class="navbar-brand">
+
+      <img src="logoDak-removebg-preview.png" width="130" height="40">
+
+    </div>
+
+    <div class="navbar-menu ">
+      <div class="navbar-start">
+        <a class="navbar-item" href="https://bulma.io/">
+          Home
+        </a>
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-              Envios
+          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+            Clientes
+          </a>
+          <div class="navbar-dropdown is-boxed-success ">
+            <a class="navbar-item " href="https://bulma.io/documentation/overview/start/">
+              Nuevo Envio
             </a>
-              <div class="navbar-dropdown is-boxed">
-                <a class="navbar-item" href="{% url 'RegistroEnvio' %}">
-                 Realizar Envio
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-                 Estado Envios
-                </a>
-                 <a class="navbar-item" href="{% url 'RegistroTriaking' %}">
-                 Localizar Envios
-                </a>
-               </div>   
-           </div>
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+              Modificar Envio
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+              Listar Envio
+            </a>
+          </div>
         </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+            Envios
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+              Realizar Envio
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+              Estado Envios
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+              Localizar Envios
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 
-
   <div class="column is-half is-offset-one-quarter">
     <form class="box">
-      <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registrar Envio</p>
+      <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registro Cliente</p>
       <br>
 
       <div class="field">
         <label class="label">Documento del emisor</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Documento Emisor">
+          <input class="input" type="text" placeholder="docEmisor">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Documento del destinatario</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Documento Destinatario">
+          <input class="input" type="text" placeholder="Apellido">
         </div>
       </div>
 
@@ -86,69 +84,110 @@
         <label class="label">Direccion de destino</label>
         <div class="control">
           <div id="map-canvas" style="height: 400px; width: auto;"></div>
-
           <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-              <div id="map-canvas" style="height: 200px; width: auto;"></div>
+              <label class="label">Latitud</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Lat" id="lat">
+              </div>
+              <label class="label">Longitud</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Lang" id="lng">
+              </div>
+              <script type="text/javascript">
+                var marker;          //variable del marcador
+                var coords = {};    //coordenadas obtenidas con la geolocalización
 
-            
-        </div>
-      </div>
+                //Funcion principal
+                initMap = function () {
+                  coords = {
+                    lat: -1.285047,
+                    lng: 36.807381
+                  };
+                  setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
 
-      <div class="field">
-        <label class="label"> Peso </label>
-        <div class="control">
-          <input class="input" type="number" placeholder="Peso Kg">
-        </div>
-      </div>
+                }
 
-      <div class="field">
-        <label class="label">Medio de pago</label>
-        <div class="control">
-          <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                <span>Medios de Pago</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
+                function setMapa(coords) {
+
+                  //Se crea una nueva instancia del objeto mapa
+                  var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    {
+                      zoom: 13,
+                      center: new google.maps.LatLng(coords.lat,
+                        coords.lng)
+
+                    });
+
+                  //Creamos el marcador en el mapa con sus propiedades
+                  //para nuestro obetivo tenemos que poner el atributo draggable en true
+                  //position pondremos las mismas coordenas que obtuvimos en la geolocalización
+                  marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coords.lat,
+                      coords.lng),
+
+                  });
+                  //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
+                  //cuando el usuario a soltado el marcador
+                  marker.addListener('click', toggleBounce);
+
+                  marker.addListener('dragend', function (event) {
+                    //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
+                    document.getElementById("lat").value = this.getPosition().lat()
+                    document.getElementById('lng').value = this.getPosition().lng();
+                  });
+                }
+
+                //callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
+                function toggleBounce() {
+                  if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                  } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                  }
+                }
+              </script>
             </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
-                  Contado
-                </a>
-                <a class="dropdown-item">
-                  Debito
-                </a>
-                <a href="#" class="dropdown-item">
-                  Credito
-                </a>
-                <a href="#" class="dropdown-item">
-                  Mercado Pago
-                </a>
-                <hr class="dropdown-divider">
+          </div>
+
+          <div class="field">
+            <label class="label"> Peso </label>
+            <div class="control">
+              <input class="input" type="number" step="0.01" placeholder="Peso">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Medio de pago</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <span>Medios de Pago</span>
+                  <option>Contado</option>
+                  <option>Debito</option>
+                  <option>Credito</option>
+                  <option>Mercado Pago</option>
+                </select>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <br>
-
-      <button class="button is-info is-outlined">Pagar</button>
+          <br>
+          <button class="button is-info is-outlined">Pagar</button>
+          <br>
     </form>
-
   </div>
 
- <footer class="footer has-background-white-ter">
-      <div class="content has-text-centered">
-        <p>
-          <strong class='has-text-primary-dark'>Copyright © 2021 Dak</strong> 
-        </p>
-      </div> 
-</footer>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Copyright © 2021 Dak</strong>
+      </p>
+    </div>
+  </footer>
+
 </body>
 
 </html>
