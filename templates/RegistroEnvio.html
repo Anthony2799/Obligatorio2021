@@ -1,6 +1,68 @@
-{% extends 'index.html' %}
+<!DOCTYPE html>
+<html>
 
-{% block container %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="logoDak-removebg-preview.png" />
+  <script src="../static/js/mpas.js"></script>
+  <title>Regitro Envio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBua8IMHpArijBxORZL1nHYlFiFcM0Hk2o"></script>
+</head>
+
+<body onload="InitMap();">
+   <nav class="navbar is-success">
+        <div class="navbar-brand">
+         
+            <img src="../static/imagenes/logoDaK.png"  width="120" height="32">
+         
+        </div>
+      
+        <div  class="navbar-menu ">
+          <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'home' %}">
+              Home
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+                Clientes
+              </a>
+              <div class="navbar-dropdown is-boxed-success ">
+                <a class="navbar-item " href="{% url 'RegistroCliente' %}">
+                  Agregar Cliente
+                </a>
+                <a class="navbar-item" href="">
+                  Modificar Cliente
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                  Listar Clientes
+                </a>
+             </div>   
+        </div>
+                
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+              Envios
+            </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="{% url 'RegistroEnvio' %}">
+                 Realizar Envio
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+                 Estado Envios
+                </a>
+                 <a class="navbar-item" href="{% url 'RegistroTriaking' %}">
+                 Localizar Envios
+                </a>
+               </div>   
+           </div>
+        </div>
+    </div>
+  </nav>
+
+
   <div class="column is-half is-offset-one-quarter">
     <form class="box">
       <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registrar Envio</p>
@@ -9,14 +71,14 @@
       <div class="field">
         <label class="label">Documento del emisor</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Documento Emisor">
+          <input class="input" type="text" placeholder="docEmisor">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Documento del destinatario</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Documento Destinatario">
+          <input class="input" type="text" placeholder="Apellido">
         </div>
       </div>
 
@@ -30,11 +92,13 @@
               <div id="map-canvas" style="height: 200px; width: auto;"></div>
 
             
+        </div>
+      </div>
 
       <div class="field">
         <label class="label"> Peso </label>
         <div class="control">
-          <input class="input" type="number" placeholder="Peso Kg">
+          <input class="input" type="number" placeholder="Peso">
         </div>
       </div>
 
@@ -58,7 +122,7 @@
                 <a class="dropdown-item">
                   Debito
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="#" class="dropdown-item is-active">
                   Credito
                 </a>
                 <a href="#" class="dropdown-item">
@@ -77,5 +141,14 @@
     </form>
 
   </div>
-{% endblock%}
- 
+
+ <footer class="footer has-background-white-ter">
+      <div class="content has-text-centered">
+        <p>
+          <strong class='has-text-primary-dark'>Copyright © 2021 Dak</strong> 
+        </p>
+      </div> 
+</footer>
+</body>
+
+</html>
