@@ -1,11 +1,10 @@
 
-          
 var strArray = [];
 
 var draggablePolygon; function InitMap() {
-    var location = new google.maps.LatLng(39.86232, -4.0694706);
+    var location = new google.maps.LatLng(-1.2785691284426366, 36.82319944424295);
     var mapOptions = {
-        zoom: 7,
+        zoom: 13,
         center: location,
         mapTypeId: google.maps.MapTypeId.RoadMap
     };
