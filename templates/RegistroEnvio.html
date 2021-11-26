@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBua8IMHpArijBxORZL1nHYlFiFcM0Hk2o"></script>
+    <script src="../static/js/mpas.js"></script>
 </head>
 
 <body onload="initMap();">
@@ -62,7 +63,7 @@
   </nav>
 
   <div class="column is-half is-offset-one-quarter">
-    <form class="box">
+    <form class="box" action="get_name/" method="POST">
       <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registro Cliente</p>
       <br>
 
@@ -94,62 +95,7 @@
               <div class="control">
                 <input class="input" type="text" placeholder="Lang" id="lng">
               </div>
-              <script type="text/javascript">
-                var marker;          //variable del marcador
-                var coords = {};    //coordenadas obtenidas con la geolocalización
-
-                //Funcion principal
-                initMap = function () {
-                  coords = {
-                    lat: -1.285047,
-                    lng: 36.807381
-                  };
-                  setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
-
-                }
-
-                function setMapa(coords) {
-
-                  //Se crea una nueva instancia del objeto mapa
-                  var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    {
-                      zoom: 13,
-                      center: new google.maps.LatLng(coords.lat,
-                        coords.lng)
-
-                    });
-
-                  //Creamos el marcador en el mapa con sus propiedades
-                  //para nuestro obetivo tenemos que poner el atributo draggable en true
-                  //position pondremos las mismas coordenas que obtuvimos en la geolocalización
-                  marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(coords.lat,
-                      coords.lng),
-
-                  });
-                  //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
-                  //cuando el usuario a soltado el marcador
-                  marker.addListener('click', toggleBounce);
-
-                  marker.addListener('dragend', function (event) {
-                    //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
-                    document.getElementById("lat").value = this.getPosition().lat()
-                    document.getElementById('lng').value = this.getPosition().lng();
-                  });
-                }
-
-                //callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
-                function toggleBounce() {
-                  if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-                  } else {
-                    marker.setAnimation(google.maps.Animation.BOUNCE);
-                  }
-                }
-              </script>
+              
             </div>
           </div>
 
@@ -175,7 +121,7 @@
             </div>
           </div>
           <br>
-          <button class="button is-info is-outlined">Pagar</button>
+          <input type="submit" value="Continuar" />
           <br>
     </form>
   </div>

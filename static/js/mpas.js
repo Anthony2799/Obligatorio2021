@@ -1,46 +1,58 @@
 
-var strArray = [];
-
-var draggablePolygon; function InitMap() {
-    var location = new google.maps.LatLng(-1.2785691284426366, 36.82319944424295);
-    var mapOptions = {
-        zoom: 13,
-        center: location,
-        mapTypeId: google.maps.MapTypeId.RoadMap
-    };
 
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+                var marker;          //variable del marcador
+                var coords = {};    //coordenadas obtenidas con la geolocalización
 
-    var shapeCoordinates = [
+                //Funcion principal
+                initMap = function () {
+                  coords = {
+                    lat: -1.285047,
+                    lng: 36.807381
+                  };
+                  setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
 
-        new google.maps.LatLng(39.86232, -4.0694706),
-        new google.maps.LatLng(39.86232, -4.0694706)
-    ];
-    // Construct the polygon
-    draggablePolygon = new google.maps.Polygon({
-        paths: shapeCoordinates,
-        draggable: true,
-        editable: true,
-        strokeColor: '',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#ADFF2F',
-        fillOpacity: 0.5
-    });
-    draggablePolygon.setMap(map);
-    google.maps.event.addListener(draggablePolygon, "dragend", Getpolygoncoordinates);
-    google.maps.event.addListener(draggablePolygon.getPath(), "insert_at", Getpolygoncoordinates);
-    google.maps.event.addListener(draggablePolygon.getPath(), "remove_at", Getpolygoncoordinates);
-    google.maps.event.addListener(draggablePolygon.getPath(), "set_at", Getpolygoncoordinates);
-}
+                }
 
-function Getpolygoncoordinates() {
-    var len = draggablePolygon.getPath().getLength();
-    strArray = [];
-    for (var i = 0; i < len; i++) {
-        strArray[strArray.length] = { Latitud: draggablePolygon.getPath().getAt(i).toUrlValue(5).split(",")[0], Longitud: draggablePolygon.getPath().getAt(i).toUrlValue(5).split(",")[1] };
-    }
+                function setMapa(coords) {
 
-}
+                  //Se crea una nueva instancia del objeto mapa
+                  var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    {
+                      zoom: 13,
+                      center: new google.maps.LatLng(coords.lat,
+                        coords.lng)
+
+                    });
+
+                  //Creamos el marcador en el mapa con sus propiedades
+                  //para nuestro obetivo tenemos que poner el atributo draggable en true
+                  //position pondremos las mismas coordenas que obtuvimos en la geolocalización
+                  marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coords.lat,
+                      coords.lng),
+
+                  });
+                  //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
+                  //cuando el usuario a soltado el marcador
+                  marker.addListener('click', toggleBounce);
+
+                  marker.addListener('dragend', function (event) {
+                    //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
+                    document.getElementById("lat").value = this.getPosition().lat()
+                    document.getElementById('lng').value = this.getPosition().lng();
+                  });
+                }
+
+                //callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
+                function toggleBounce() {
+                  if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                  } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                  }
+                }
+    

@@ -27,4 +27,5 @@ urlpatterns = [
     path("alta_cliente/",views_envio.agregar_cliente , name="RegistroCliente"),
     path("RegistroTraking/", views_traking.registro_traking , name="RegistroTriaking"),
     path("home/",views_envio.home,name= "home"),
+    path("get_name/",views_usuarios.get_name)
 ]

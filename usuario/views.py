@@ -2,32 +2,26 @@ from django import forms
 from django.shortcuts import render, redirect  
 from usuario.forms import usuarioForm    
 from usuario.models import Entidad  
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from .forms import usuarioForm
+
 import pdb
 # Create usuario
-def emp(request):
-   # pdb.set_trace()
+def get_name(request):  
     pdb.set_trace()
-    if request.method == "POST":
-        pdb.set_trace()
+    if request.method == 'POST':
         form = usuarioForm(request.POST)
         if form.is_valid():
-            try:
-                pdb.set_trace()
-                form.save()
-                return redirect('/show')
-            except:
-                pass
-        else:
-            form = usuarioForm()
             pdb.set_trace()
-            return render(request,'index.html',{'form':form})
-    pdb.set_trace()
+            return HttpResponseRedirect('home.html')
+    else:
+        form = usuarioForm()
+        pdb.set_trace()
+        return render(request,'RegistroCliente.html',{'form':form}) 
     
-def show(request):
-
-    usuarios = Entidad.objects.all()
-    return render(request,'show.html',{'usuarios':usuarios})
+#def show(request):
+#    usuarios = Entidad.objects.all()
+#    return render(request,'show.html',{'usuarios':usuarios})
 
 def cliR(request):
     pdb.set_trace()
