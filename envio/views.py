@@ -8,6 +8,10 @@ from usuario.models import Entidad
 
 
 
+def Alta(request):
+    return render(request,)
+
+
 def home(request):
     return render(request,'home.html')
 
