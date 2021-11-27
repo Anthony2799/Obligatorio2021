@@ -1,7 +1,13 @@
 {% extends 'index.html' %}
 
-
 {% block container %}
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+<input type='submit' value='Registrar' class="button is-info is-outlined">
+</form>
+<!--
+<form method="POST">
   <div class="column is-half is-offset-one-quarter">
 <form class="box" action="" method='POST' >
       {% csrf_token %}
@@ -43,5 +49,6 @@
     <input type='submit' value='Registrar' class="button is-info is-outlined">
 </form>
 </div>
+-->
 {% endblock%}
   
