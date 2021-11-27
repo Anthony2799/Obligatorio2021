@@ -3,7 +3,9 @@
 
 {% block container %}
   <div class="column is-half is-offset-one-quarter">
-<form class="box" action='alta_cliente/' method='POST' >
+<form class="box" action="" method='POST' >
+      {% csrf_token %}
+      
       <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registro Cliente</p>
       <br>
       <div class="field">
@@ -38,7 +40,7 @@
         </div>
       </div>
     <br>
-    <button class="button is-info is-outlined">Registrar</button>
+    <input type='submit' value='Registrar' class="button is-info is-outlined">
 </form>
 </div>
 {% endblock%}
