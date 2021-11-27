@@ -25,8 +25,8 @@ def altacliente(request):
     return render(request,'RegistroClientes.html',contexto)        
 
 
-class addCLiente(CreateView):
-    model = Perfil_cliente
-    template_name = 'RegistroClientes.html'
-    fields = '__all__'
-    success_url = '/Alta'
+#class addCLiente(CreateView):
+#   model = Perfil_cliente
+#    template_name = 'RegistroClientes.html'
+#    fields = '__all__'
+#    success_url = '/Alta'
