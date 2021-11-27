@@ -11,8 +11,7 @@ from traking import views as views_traking
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AltaEnvio/',views_envio.alta_envio, name="RegistroEnvio"),
-    #path("Clientes/",include('RegistroClientes.html')),
     path("RegistroTraking/", views_traking.registro_traking , name="RegistroTriaking"),
     path("home/",views_envio.home,name= "home"),
-    path("AltaCliente/",views_usuarios.altacliente,name="RegistroCliente")
+    path("AltaCliente/",views_usuarios.altacliente)
 ]

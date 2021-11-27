@@ -1,10 +1,9 @@
 from django import forms
 
 from django.shortcuts import render, redirect
-from DAK.usuario.forms import ClienteForm     
-from usuario.models import Entidad  
-from django.http import HttpResponse
-import pdb
+from usuario.forms import ClienteForm     
+
+
 from .models import Perfil_cliente
 # Create usuario
 from django.views.generic import CreateView, UpdateView, ListView
