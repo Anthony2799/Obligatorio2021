@@ -8,7 +8,12 @@
   <title>Regitro Envio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBua8IMHpArijBxORZL1nHYlFiFcM0Hk2o"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7PK5EbSP4yiu6NFtbgHriINHlka3RFF0&callback=initMap&libraries=geometry"></script>
+    <script src="../static/js/mpas.js"></script>
+    
+
+
+
 </head>
 
     <body onload="initMap();">
@@ -62,8 +67,9 @@
   </nav>
 
   <div class="column is-half is-offset-one-quarter">
-    <form class="box" action="/team_name_url/" method="post">
+    <form class="box" action="/altaEnvio/" method="post">{% csrf_token %}
       <p class="card-header-title is-centered is-size-4 has-background-success  has-text-white">Registro Cliente</p>
+
       <br>
 
       <div class="field">
@@ -83,6 +89,7 @@
       <div class="field">
         <label class="label">Direccion de destino</label>
         <div class="control">
+          
           <div id="map-canvas" style="height: 400px; width: auto;"></div>
           <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
