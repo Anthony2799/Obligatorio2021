@@ -7,6 +7,9 @@ class Entidad(models.Model):
     direccion =  models.CharField(max_length=200,blank=False)
     email = models.EmailField(blank=False)
     telefono = models.CharField(max_length=20,blank=True)
+    
+    def __str__(self):
+        return str(self.numero_entidad)
 
 
 
@@ -37,3 +40,5 @@ class Perfil_funcionario(models.Model):
     apellido_funcionario = models.TextField(max_length=40,blank=False)
     Contraseña  = models.CharField(max_length= 20, blank= False, null= False)
 
+    def __str__(self):
+        return str(self.nombre_funcionario)

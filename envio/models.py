@@ -9,3 +9,5 @@ class Envio(models.Model):
     Latitud = models.CharField(max_length=20 , blank=True)
     Longitud = models.CharField(max_length=20 , blank=True)
     #numero_zona =models.ForeignKey("users.Perfil_funcionario", on_delete=models.CASCADE)
+
+    
