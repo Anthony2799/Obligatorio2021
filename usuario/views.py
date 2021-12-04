@@ -12,6 +12,7 @@ def altaCliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
+            
     else:
         form = ClienteForm()
     return render(request,'RegistroClientes.html',{'form':form})
@@ -22,12 +23,11 @@ def altaentidad(request):
     if request.method == 'POST':
         form = EntidadForm(request.POST)
         if form.is_valid():
-            EntidadForm.save()
             form.save()
-            
+            return render(request,'RegistroClientes.html',{'form':form})
     else:
         form = EntidadForm()
-    return render(request,'agregar_entidad.html',{'form':form})
+        return render(request,'agregar_entidad.html',{'form':form})
    
 
 # Agregar empresa

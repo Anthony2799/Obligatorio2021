@@ -1,30 +1,28 @@
-from enum import Enum
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.db.models import fields
-
-class Choice(Enum):   
-    FIJO = "Fijo"
-    PESO = "Peso"
-    DISTANCIA_PESO = "Distancia/Peso"
+from django.db.models.enums import Choices
 
 
+
+
+    
 class Entidad(models.Model):
+    class Grupos(models.TextChoices):
+        FIJO = 'F', _('Fijo')
+        PESO = 'P', _('Peso')
+        DISTANCIA_PESO = 'DP', _('Distancia/Peso')
+
     numero_entidad = models.AutoField(primary_key=True)
-    numero_grupo = models.CharField(
-        max_length=2,
-        choices=[(tag, tag.value) for tag in Choice],
-        default=Choice.FIJO,
-    )
-    def __str__(self):
-        return str(self.numero_grupo)
+    numero_grupo = models.CharField( 
+        max_length=5,
+        choices=Grupos.choices,
+        default=Grupos.FIJO,)
     direccion =  models.CharField(max_length=200,blank=False)
     email = models.EmailField(blank=False)
     telefono = models.CharField(max_length=20,blank=False)
     empresa = models.BooleanField(null=True)
     
-    def __str__(self):
-        return str(self.numero_entidad)
-
 
 
 class Perfil_cliente(models.Model):
