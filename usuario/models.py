@@ -1,9 +1,22 @@
+from enum import Enum
 from django.db import models
+from django.db.models import fields
+
+class Choice(Enum):   
+    FIJO = "Fijo"
+    PESO = "Peso"
+    DISTANCIA_PESO = "Distancia/Peso"
 
 
 class Entidad(models.Model):
     numero_entidad = models.AutoField(primary_key=True)
-    numero_grupo = models.IntegerField(blank=False)
+    numero_grupo = models.CharField(
+        max_length=2,
+        choices=[(tag, tag.value) for tag in Choice],
+        default=Choice.FIJO,
+    )
+    def __str__(self):
+        return str(self.numero_grupo)
     direccion =  models.CharField(max_length=200,blank=False)
     email = models.EmailField(blank=False)
     telefono = models.CharField(max_length=20,blank=False)

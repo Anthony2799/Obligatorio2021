@@ -10,37 +10,32 @@ def infex(request):
 def altaCliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
-
     else:
         form = ClienteForm()
     return render(request,'RegistroClientes.html',{'form':form})
 
 
 # Alta de entidad
-def alta_entidad(request):
+def altaentidad(request):
     if request.method == 'POST':
         form = EntidadForm(request.POST)
-        print(form)
-        if form.is_valid:
+        if form.is_valid():
+            EntidadForm.save()
             form.save()
             
     else:
         form = EntidadForm()
-    if form['empresa'].value() == True:
-        return render(request,'agregar_empresa.html',{'form':form})
-    else:
-        return render(request,'agregar_entidad.html',{'form':form})
-
+    return render(request,'agregar_entidad.html',{'form':form})
+   
 
 # Agregar empresa
 def altaEmpresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
-
     else:
         form = EmpresaForm()
     return render(request,'RegistroClientes.html',{'form':form})

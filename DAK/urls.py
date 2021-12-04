@@ -14,5 +14,5 @@ urlpatterns = [
     path("RegistroTraking/", views_traking.registro_traking , name="RegistroTriaking"),
     path("",views_envio.homeREturn,name= "home"), 
     path("AltaCliente/",views_usuarios.altaCliente,name="RegistroClientes"),
-    path("agregar_entidad/",views_usuarios.alta_entidad,name="agregar_entidad"),
+    path("agregar_entidad/",views_usuarios.altaentidad,name="agregar_entidad"),
 ]
