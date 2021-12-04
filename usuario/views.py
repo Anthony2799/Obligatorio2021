@@ -2,6 +2,11 @@ from django import forms
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from usuario.forms import ClienteForm,EntidadForm,EmpresaForm
+import usuario.clases.group as strategy
+
+
+class principal:
+     strategy: strategy.Grupo
 
 def infex(request):
     return render(request,'index.html')
@@ -24,7 +29,6 @@ def altaentidad(request):
         if form.is_valid():
             EntidadForm.save()
             form.save()
-            
     else:
         form = EntidadForm()
     return render(request,'agregar_entidad.html',{'form':form})
@@ -39,3 +43,8 @@ def altaEmpresa(request):
     else:
         form = EmpresaForm()
     return render(request,'RegistroClientes.html',{'form':form})
+
+def stategy():
+    estrategia = group.Grupo().ConcreteStrategyA();
+
+    
