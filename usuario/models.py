@@ -6,7 +6,8 @@ class Entidad(models.Model):
     numero_grupo = models.IntegerField(blank=False)
     direccion =  models.CharField(max_length=200,blank=False)
     email = models.EmailField(blank=False)
-    telefono = models.CharField(max_length=20,blank=True)
+    telefono = models.CharField(max_length=20,blank=False)
+    empresa = models.BooleanField(null=True)
     
     def __str__(self):
         return str(self.numero_entidad)

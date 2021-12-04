@@ -12,8 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('AltaEnvio/',views_envio.alta_envio, name="RegistroEnvio"),
     path("RegistroTraking/", views_traking.registro_traking , name="RegistroTriaking"),
-    # path("home/",'home.html',name= "home"),
+    path("",views_envio.homeREturn,name= "home"), 
     path("AltaCliente/",views_usuarios.altaCliente,name="RegistroClientes"),
-    path("AltaCliente/",views_usuarios.altaEntidad,name="RegistroEntidad"),
-    path("AltaCliente/",views_usuarios.altaEmpresa,name="RegistroEmpresa")
+    path("agregar_entidad/",views_usuarios.alta_entidad,name="agregar_entidad"),
 ]

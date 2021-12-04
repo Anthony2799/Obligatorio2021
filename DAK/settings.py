@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'usuario',
     'envio',
     'mapa',
+    'traking',
 ]
 
 MIDDLEWARE = [

@@ -16,5 +16,6 @@ def alta_envio(request):
         form = EnvioForm()
     return render(request,'RegistroEnvio.html',{'form':form})
 
-
+def homeREturn(request):
+    return render(request, 'home.html')
  

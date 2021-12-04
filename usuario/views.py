@@ -12,27 +12,35 @@ def altaCliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid:
             form.save()
-        return redirect('RegistroClientes.html')
+
     else:
         form = ClienteForm()
     return render(request,'RegistroClientes.html',{'form':form})
 
-def altaEntidad(request):
+
+# Alta de entidad
+def alta_entidad(request):
     if request.method == 'POST':
         form = EntidadForm(request.POST)
+        print(form)
         if form.is_valid:
             form.save()
-        return redirect('RegistroClientes.html')
+            
     else:
         form = EntidadForm()
-    return render(request,'RegistroClientes.html',{'form':form})
+    if form['empresa'].value() == True:
+        return render(request,'agregar_empresa.html',{'form':form})
+    else:
+        return render(request,'agregar_entidad.html',{'form':form})
 
+
+# Agregar empresa
 def altaEmpresa(request):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
         if form.is_valid:
             form.save()
-        return redirect('RegistroClientes.html')
+
     else:
         form = EmpresaForm()
     return render(request,'RegistroClientes.html',{'form':form})

@@ -1,6 +1,9 @@
+
 from django import forms
 from django.forms import widgets
 from .models import Perfil_cliente ,Entidad,Perfil_empresa
+
+
 
 
 class ClienteForm(forms.ModelForm):
@@ -33,18 +36,22 @@ class EntidadForm(forms.ModelForm):
             'direccion',
             'email',
             'telefono',
+            'empresa',
         ]
         labels = {
             'numero_grupo'  : 'Grupo',
             'direccion'     : 'Direccion',
             'email'         : 'E-mail',
             'telefono'      : 'Tel',
+            'empresa'       : 'Empresa',
             }
         widgets = {
+            
             'numero_grupo'    : forms.Select(attrs={'class':'input is-normal'}),
             'direccion'       : forms.TextInput(attrs={'class':'input is-normal'}),
-            'email'           : forms.TextInput(attrs={'class':'input is-normal'}),
+            'email'           : forms.EmailInput(attrs={'placeolder':'tuki@hotmail.com','class':'input is-normal'}),
             'telefono'        : forms.TextInput(attrs={'class':'input is-normal'}),
+            'empresa'         : forms.CheckboxInput(attrs={'value':'Empresa'}),
             }
 
 class EmpresaForm(forms.ModelForm):
