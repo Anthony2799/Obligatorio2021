@@ -1,0 +1,8 @@
+from django import forms
+
+class PagoForm(forms.Form):
+    #nro_envio         = forms.TextInput(attrs={'readonly':'readonly'}),
+    precio            = forms.TextInput(),
+    fecha_vencimiento = forms.TextInput(),
+    nro_tarjeta       = forms.TextInput(),
+    cuotas            = forms.TextInput(),

@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import fields
 from django.forms import widgets
 from .models import Envio
 
@@ -15,7 +16,7 @@ class EnvioForm(forms.ModelForm):
             'estado',
         ]
         labels = {
-            'numero_entidad'    : 'Entidad',
+            #'numero_entidad'    : 'Entidad',
             'documento_usuario' : 'Cliente',
             'peso_paquete'      : 'Peso paquete',
             'Latitud'           : 'Latitud',
@@ -24,7 +25,7 @@ class EnvioForm(forms.ModelForm):
             'estado'            : 'estado',
         }
         widgets = {
-            'numero_entidad'     : forms.Select(attrs={'class':'input is-normal'}),
+            #'numero_entidad'     : forms.Select(attrs={'class':'input is-normal'}),
             'documento_usuario'  : forms.Select(attrs={'class':'input is-normal'}),
             'peso_paquete'       : forms.NumberInput(attrs={'class':'input is-normal','step':0.5}),
             'Latitud'            : forms.TextInput(attrs={'class':'input is-normal','id':'lat'}),
@@ -32,3 +33,10 @@ class EnvioForm(forms.ModelForm):
             'costo'              : forms.TextInput(attrs={'class':'input is-normal'}),
             'estado'             : forms.TextInput(attrs={'class':'input is-normal'}),
         }
+
+
+class PagoForm(forms.Form):
+    #nro_envio         = forms.TextInput(attrs={'readonly':'readonly'}),
+    precio            = forms.TextInput(attrs={'class':'input is-normal'}),
+    nro_tarjeta       = forms.CharField(max_length=100),
+    cuotas            = forms.CharField(max_length=100),

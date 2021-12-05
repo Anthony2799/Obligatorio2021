@@ -2,11 +2,13 @@ from django import forms
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from envio.clases.group import Grupo
-from envio.clases.pago import pago
+from envio.clases.grupos_cliente import grupos_cliente
 from envio.clases.pago_normal import pago_normal
 from envio.clases.pago_peso import pago_peso
 from envio.clases.pago_distancia_peso import pago_distanica_peso
-from envio.forms import EnvioForm
+
+from envio.forms import EnvioForm, PagoForm
+
 from usuario.models import Entidad
 
 
@@ -19,7 +21,7 @@ def alta_envio(request):
         if form.is_valid():
             form.save()
         variable = Entidad.objects.all()
-        valor = pago()
+        valor = grupos_cliente()
         peso = float(request.POST.get('peso_paquete'))
         for i in variable:
             if(request.POST.get('numero_entidad') == str(i.numero_entidad)):
@@ -41,4 +43,15 @@ def alta_envio(request):
 
 def homeREturn(request):
     return render(request, 'home.html')
+
+def Pagar(request):
+    form = PagoForm()
+    if request.method == 'POST':
+        form = PagoForm(request.POST)
+        if form.is_valid():
+            pass
+    else:
+        form = PagoForm()
+    return render(request,'pagar.html',{'form':form})
+    
  
