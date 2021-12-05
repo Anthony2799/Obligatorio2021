@@ -1,7 +1,8 @@
 from envio.clases.group import Grupo
 
 class pago_peso(Grupo):
-    precio =0
+    precio =180
     
     def execute(self, peso):
-        return float((self.precio)* peso)
+        resultado =  (self.precio)*peso
+        return str(resultado)

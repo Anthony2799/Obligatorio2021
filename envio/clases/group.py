@@ -5,4 +5,4 @@ class Grupo(ABC):
     
     @abstractmethod
     def execute(self) -> str:
-       pass
+        pass
