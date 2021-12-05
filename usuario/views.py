@@ -20,16 +20,22 @@ def altaCliente(request):
 
 # Alta de entidad
 def altaentidad(request):
+    
     if request.method == 'POST':
         form = EntidadForm(request.POST)
+        es_empresa = form['empresa'].value()
+        
         if form.is_valid():
+            
             form.save()
-
-            return render(request,'RegistroClientes.html',{'form':form})
+            if es_empresa:
+                return redirect('http://localhost:8000/agregar_empresa/')
+            else:
+                return redirect('http://localhost:8000/AltaCliente/')
 
     else:
-        form = EntidadForm()
-        return render(request,'agregar_entidad.html',{'form':form})
+        form = EmpresaForm()
+        return render(request,'agregar_entidad.html',{'form': form })
    
 
 # Agregar empresa
