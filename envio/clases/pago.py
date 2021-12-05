@@ -11,4 +11,4 @@ class pago:
             
     
     def executeStrategy(self):
-        print(str(self.estrategia.execute()))
+        return str(self.estrategia.execute())
