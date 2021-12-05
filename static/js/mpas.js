@@ -98,7 +98,8 @@ function setMapa(coords) {
           coords,
           extra
           );
-      document.getElementById("distancia").value = (distanceInMeters * 0.001);
+      let calculo = distanceInMeters * 0.001
+      document.getElementById("id_distancia").value = calculo.toFixed(2);
     }
     
     dist()

@@ -15,6 +15,7 @@ class EnvioForm(forms.ModelForm):
             #'costo',
             # 'documento_destinatario',
             'estado',
+            'distancia',
         ]
         labels = {
             #'numero_entidad'    : 'Entidad',
@@ -36,6 +37,8 @@ class EnvioForm(forms.ModelForm):
             #'costo'              : forms.TextInput(attrs={'class':'input is-normal'}),
             #'documento_destinatario': forms.Select(attrs={'class': 'input is-normal'}),
             'estado'             : forms.TextInput(attrs={'class':'input is-normal'}),
+            'distancia': forms.HiddenInput(attrs={'class': 'input is-normal'}),
+
             
         }
 
