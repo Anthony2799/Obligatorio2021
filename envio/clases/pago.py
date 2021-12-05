@@ -1,4 +1,5 @@
 from envio.clases.group import Grupo
+from envio.clases.pago_normal import pago_normal
 
 
 class pago:
@@ -8,7 +9,7 @@ class pago:
         if estrategia is not None:
             self.estrategia = estrategia
         else:
-            self.estrategia = Grupo.pago_normal()
+            self.estrategia = pago_normal()
 
     def executeStrategy(self) -> str:
         return str(self.estrategia.execute())

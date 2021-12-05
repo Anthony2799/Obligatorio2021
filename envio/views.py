@@ -19,24 +19,25 @@ def alta_envio(request):
         if form.is_valid():
             form.save()
         variable = Entidad.objects.all()
+        valor = pago()
+        peso = float(request.POST.get('peso_paquete'))
         for i in variable:
-             print(i)
-             if(request.POST.get('numero_entidad') == str(i.numero_entidad)):
-                 valor = pago()
-                 if i.numero_grupo == 'P':
-                     valor.setStrategy(pago_peso())
-                     peso = float(request.POST.get('peso_paquete'))
-                     print(peso)
-                     valor.executeStrategy(peso)
-                 elif i.numero_grupo == 'DP':
-                     valor.setStrategy(pago_distanica_peso())
-                     valor.executeStrategy(float(request.POST.get('peso')),12)
-                 else:
-                     valor.setStrategy(pago_normal())
-                     valor.executeStrategy()
+            if(request.POST.get('numero_entidad') == str(i.numero_entidad)):
+                if str(i.numero_grupo) == 'P':
+                    valor.setStrategy(pago_peso())
+                    valor.estrategia.execute(peso)
+                    print(valor.estrategia.execute(peso))
+                elif str(i.numero_grupo) == 'DP':
+                    valor.setStrategy(pago_distanica_peso())
+                    valor.estrategia.execute(peso,10)
+                    print(valor.estrategia.execute(peso,10))
+                else:
+                    valor.setStrategy()
+                    valor.estrategia.execute()
+                    print(valor.estrategia.execute())
     else:
         form = EnvioForm()
-        return render(request,'RegistroEnvio.html',{'form':form})
+    return render(request,'RegistroEnvio.html',{'form':form})
 
 def homeREturn(request):
     return render(request, 'home.html')
