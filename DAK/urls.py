@@ -15,6 +15,6 @@ urlpatterns = [
     path("",views_envio.homeREturn,name= "home"), 
     path("AltaCliente/",views_usuarios.altaCliente,name="RegistroClientes"),
     path("agregar_entidad/",views_usuarios.altaentidad,name="agregar_entidad"),
-    path("pagar/",views_envio.Pagar,name="pagar")
-    path('agregar_empresa/',views_usuarios.altaEmpresa,name='alta_empresa')
+    path("pagar/",views_envio.Pagar,name="pagar"),
+    path('agregar_empresa/',views_usuarios.altaEmpresa,name='alta_empresa'),
 ]

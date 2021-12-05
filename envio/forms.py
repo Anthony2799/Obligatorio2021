@@ -39,7 +39,14 @@ class EnvioForm(forms.ModelForm):
 
 
 class PagoForm(forms.Form):
-    #nro_envio         = forms.TextInput(attrs={'readonly':'readonly'}),
-    precio            = forms.TextInput(attrs={'class':'input is-normal'}),
-    nro_tarjeta       = forms.CharField(max_length=100),
-    cuotas            = forms.CharField(max_length=100),
+    nro_envio         = forms.TextInput(attrs={'readonly':'readonly'}),
+    OPTIONS = (
+                ("Efectivo", "Efectivo"),
+                ("Debito", "Debito"),
+                ("Cretido", "Cretido"),
+                )
+    metodo = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                             choices=OPTIONS),
+    precio            = forms.CharField( max_length=30,required=False),
+    nro_tarjeta       = forms.TextInput(attrs={'class':'input is-normal'}),
+    cuotas            = forms.TextInput(attrs={'class':'input is-normal'}),

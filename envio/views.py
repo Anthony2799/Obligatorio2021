@@ -45,13 +45,17 @@ def homeREturn(request):
     return render(request, 'home.html')
 
 def Pagar(request):
+    print(request.POST)
     form = PagoForm()
     if request.method == 'POST':
         form = PagoForm(request.POST)
         if form.is_valid():
-            pass
+          print(PagoForm())
     else:
         form = PagoForm()
-    return render(request,'pagar.html',{'form':form})
+    context={
+        'nro_entidad': form    
+    }
+    return render(request,'pagar.html',context)
     
  

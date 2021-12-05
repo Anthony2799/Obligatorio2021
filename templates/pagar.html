@@ -2,16 +2,25 @@
 
 {% block container %}
 <div class="column is-half is-offset-one-quarter">
-    <form action="/your-name/" method="post">
+    <form action="/pagar/" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <select name="metodo" id="metodo" class="multiselect" class='input is-normal'>
+            <option value="efectivo" selected="selected">efectivo</option>
+            <option value="credito" selected="selected">credito</option>
+            <option value="debito" selected="selected">debito</option>
+            <option value="mercado_pago" selected="selected">Mercado pago </option>
+        </select>
+        <p><label for="nro_envio">Nro. envio:</label>
+            <input id="nro_envio" type="text" name="nro_envio" maxlength="100" required class='input is-normal'></p>
+            
         <p><label for="precio">precio:</label>
-            <input id="precio" type="text" name="precio" maxlength="100" required></p>
-        <p><label for="nro_tarjeta">precio:</label>
-            <input id="nro_tarjeta" type="text" name="nro_tarjeta" maxlength="100" required></p>
-        <p><label for="cuotas">precio:</label>
-            <input id="cuotas" type="text" name="cuotas" maxlength="100" required></p>
-        <input type="submit" value="Submit">
+            <input id="precio" type="text" name="precio" maxlength="100" required class='input is-normal'></p>
+        <p><label for="nro_tarjeta">Nro. tarjeta:</label>
+            <input id="nro_tarjeta" type="text" name="nro_tarjeta" maxlength="100" required class='input is-normal'></p>
+        <p><label for="cuotas">Cuotas:</label>
+            <input id="cuotas" type="text" name="cuotas" maxlength="100" required class='input is-normal'></p>
+        <input type="submit" value="Enter">
     </form>
     
 </div>
