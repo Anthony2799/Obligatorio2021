@@ -1,4 +1,4 @@
-let prueba;
+var prueba;
 let marker;          //variable del marcador
 let coords = {
   lat: -1.285047,
@@ -89,11 +89,26 @@ function setMapa(coords) {
     document.getElementById("lat").value = lat;
     document.getElementById('lng').value = lng;
     
+    function dist(){
+      let extra = new google.maps.LatLng({
+          lat: parseFloat(document.getElementById("lat").value), 
+          lng: parseFloat(document.getElementById("lng").value)
+      })
+      var distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(
+          coords,
+          extra
+          );
+      document.getElementById("distancia").value = (distanceInMeters * 0.001);
+    }
+    
+    dist()
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
     console.log(google.maps.geometry.poly.containsLocation(event.latLng, zona1));
   });
+
+
   
   linea();
 
@@ -110,18 +125,7 @@ function toggleBounce() {
   }
 }
 
-function dist(){
-  let extra = new google.maps.LatLng({
-      lat: parseFloat(document.getElementById("lat").value), 
-      lng: parseFloat(document.getElementById("lng").value)
-  })
-  var distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(
-      coords,
-      extra
-      );
-   
-  console.log((distanceInMeters * 0.001));
-}
+
 
 
 let linea = ()=>{ 

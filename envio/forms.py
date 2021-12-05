@@ -25,6 +25,7 @@ class EnvioForm(forms.ModelForm):
             #'costo'             : 'costo',
             # 'documento_destinatario': 'Documento destinatario',
             'estado'            : 'estado',
+            'distancia'         : 'distancia',
         }
         widgets = {
             #'numero_entidad'     : forms.Select(attrs={'class':'input is-normal'}),
@@ -35,6 +36,7 @@ class EnvioForm(forms.ModelForm):
             #'costo'              : forms.TextInput(attrs={'class':'input is-normal'}),
             #'documento_destinatario': forms.Select(attrs={'class': 'input is-normal'}),
             'estado'             : forms.TextInput(attrs={'class':'input is-normal'}),
+            
         }
 
 
