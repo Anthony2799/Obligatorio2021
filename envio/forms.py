@@ -12,7 +12,8 @@ class EnvioForm(forms.ModelForm):
             'peso_paquete',
             'Latitud',
             'Longitud',
-            'costo',
+            #'costo',
+            # 'documento_destinatario',
             'estado',
         ]
         labels = {
@@ -21,7 +22,8 @@ class EnvioForm(forms.ModelForm):
             'peso_paquete'      : 'Peso paquete',
             'Latitud'           : 'Latitud',
             'Longitud'          : 'Longitud',
-            'costo'             : 'costo',
+            #'costo'             : 'costo',
+            # 'documento_destinatario': 'Documento destinatario',
             'estado'            : 'estado',
         }
         widgets = {
@@ -30,7 +32,8 @@ class EnvioForm(forms.ModelForm):
             'peso_paquete'       : forms.NumberInput(attrs={'class':'input is-normal','step':0.5}),
             'Latitud'            : forms.TextInput(attrs={'class':'input is-normal','id':'lat'}),
             'Longitud'           : forms.TextInput(attrs={'class':'input is-normal','id':'lng'}),
-            'costo'              : forms.TextInput(attrs={'class':'input is-normal'}),
+            #'costo'              : forms.TextInput(attrs={'class':'input is-normal'}),
+            #'documento_destinatario': forms.Select(attrs={'class': 'input is-normal'}),
             'estado'             : forms.TextInput(attrs={'class':'input is-normal'}),
         }
 
