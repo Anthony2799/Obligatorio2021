@@ -9,6 +9,6 @@ class pago_distanica_peso(Grupo):
     def execute(self,peso, distancia):
         precio =self.precio_primario(peso)
         porcentajes = 25
-        peso= float((self.precio*self.porcentajes)/100)
-        
-        return (peso * distancia)
+        peso = float((self.precio*self.porcentajes)/100)
+        retorno = (peso * distancia)
+        return str(retorno)
