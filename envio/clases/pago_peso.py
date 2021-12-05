@@ -1,4 +1,4 @@
-from group import Grupo
+from envio.clases.group import Grupo
 
 class pago_peso(Grupo):
     precio =0
