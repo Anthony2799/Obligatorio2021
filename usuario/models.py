@@ -23,7 +23,8 @@ class Entidad(models.Model):
     telefono = models.CharField(max_length=20,blank=False)
     empresa = models.BooleanField(null=True)
     
-
+    def __str__(self):
+        return str(self.numero_entidad)
 
 class Perfil_cliente(models.Model):
     entidad_usuario =  models.ForeignKey('usuario.Entidad', verbose_name='numero_entidad', on_delete=models.CASCADE)
