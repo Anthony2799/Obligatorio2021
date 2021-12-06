@@ -1,7 +1,3 @@
-window.onload=function ()
-{
-  url()
-}
 var prueba;
 let marker;          //variable del marcador
 let coords = {
@@ -21,7 +17,7 @@ let zona2 = [
   { lat: -1.2606422996905813, lng: 36.84222825952148 },
   { lat: -1.3052630680195252, lng: 36.82660707421874 },
   { lat: -1.2649327918431663, lng: 36.803604449707024 },
-  { lat: -1.2649327918431663, lng: 36.803604449707024  },
+  { lat: -1.2649327918431663, lng: 36.803604449707024 },
   ];
   let zona3 = [
     { lat: -1.2652760309092232, lng: 36.80394777246093 },
@@ -102,8 +98,7 @@ function setMapa(coords) {
           coords,
           extra
           );
-      let calculo = distanceInMeters * 0.001
-      document.getElementById("id_distancia").value = calculo.toFixed(2);
+      document.getElementById("distancia").value = (distanceInMeters * 0.001);
     }
     
     dist()
@@ -143,13 +138,4 @@ let linea = ()=>{
   });
 }
 
-function url() {
-  if(document.getElementById('precio') != null){
-     let valores = window.location.pathname;
-     console.log(valores);
-     valores =valores.split("/")
-    console.log(valores)
-     document.getElementById('precio').value= valores[2]
-     console.log(olo);
-}
-  }
+const valores = valores

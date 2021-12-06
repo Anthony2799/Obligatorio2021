@@ -1,3 +1,4 @@
+from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from envio.clases.group import Grupo
@@ -78,25 +79,18 @@ def Pagar(request, precio):
                 enviar.setEstrategia(Debito())
                 enviar.metodo_pago.devolucion(precio, "afd")
                 print(PagoForm())
-
             if str(metod) == 'Credito':
                 enviar.setEstrategia(Credito())
                 enviar.metodo_pago.devolucion(precio, "ada", "awdqw")
                 print(PagoForm())
-
             if str(metod) == 'Mercado_pago':
                 enviar.setEstrategia(Mercado_pago())
                 enviar.metodo_pago.devolucion(precio, 'numero')
                 print(PagoForm())
-
     else:
-        if request.method == 'GET':
-            form = PagoForm()
-        context = {'nro_entidad': form
-        }
-        return render(request, 'pagar.html', context)
-
-
-    return redirect('http://localhost:8000/')
-
-
+        form = PagoForm()
+    context = {
+        'nro_entidad': form,
+    }
+    
+    return render(request, 'pagar.html', context)
