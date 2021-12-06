@@ -10,6 +10,5 @@ class Envio(models.Model):
                                           on_delete=models.CASCADE)
     Latitud = models.CharField(max_length=20, blank=True)
     Longitud = models.CharField(max_length=20, blank=True)
-    distancia = models.FloatField(blank = True)
-    # numero_zona =models.ForeignKey("users.Perfil_funcionario", on_delete=models.CASCADE)
-    # documento_destinatario = numero_entidad = models.ForeignKey("usuario.Entidad", verbose_name='numero_entidad', on_delete=models.CASCADE)
+    distancia = models.FloatField(blank = True, null= True)
+

@@ -1,5 +1,5 @@
-from envio.pagos import Metodo_de_pago 
-from envio.pagos import Efectivo
+from envio.pagos.Metodo_de_pago import Metodo_de_pago 
+from envio.pagos.Efectivo import Efectivo
 
 class Envio:
     metodo_pago: Metodo_de_pago

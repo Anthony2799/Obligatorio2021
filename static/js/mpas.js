@@ -1,3 +1,7 @@
+window.onload=function ()
+{
+  url()
+}
 var prueba;
 let marker;          //variable del marcador
 let coords = {
@@ -138,3 +142,14 @@ let linea = ()=>{
   strokeWeight: 2
   });
 }
+
+function url() {
+  if(document.getElementById('precio') != null){
+     let valores = window.location.pathname;
+     console.log(valores);
+     valores =valores.split("/")
+    console.log(valores)
+     document.getElementById('precio').value= valores[2]
+     console.log(olo);
+}
+  }
