@@ -1,4 +1,4 @@
-let prueba;
+var prueba;
 let marker;          //variable del marcador
 let coords = {
   lat: -1.285047,
@@ -17,7 +17,7 @@ let zona2 = [
   { lat: -1.2606422996905813, lng: 36.84222825952148 },
   { lat: -1.3052630680195252, lng: 36.82660707421874 },
   { lat: -1.2649327918431663, lng: 36.803604449707024 },
-  { lat: -1.2649327918431663, lng: 36.803604449707024  },
+  { lat: -1.2649327918431663, lng: 36.803604449707024 },
   ];
   let zona3 = [
     { lat: -1.2652760309092232, lng: 36.80394777246093 },
@@ -89,11 +89,26 @@ function setMapa(coords) {
     document.getElementById("lat").value = lat;
     document.getElementById('lng').value = lng;
     
+    function dist(){
+      let extra = new google.maps.LatLng({
+          lat: parseFloat(document.getElementById("lat").value), 
+          lng: parseFloat(document.getElementById("lng").value)
+      })
+      var distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(
+          coords,
+          extra
+          );
+      document.getElementById("distancia").value = (distanceInMeters * 0.001);
+    }
+    
+    dist()
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
     console.log(google.maps.geometry.poly.containsLocation(event.latLng, zona1));
   });
+
+
   
   linea();
 
@@ -110,18 +125,7 @@ function toggleBounce() {
   }
 }
 
-function dist(){
-  let extra = new google.maps.LatLng({
-      lat: parseFloat(document.getElementById("lat").value), 
-      lng: parseFloat(document.getElementById("lng").value)
-  })
-  var distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(
-      coords,
-      extra
-      );
-   
-  console.log((distanceInMeters * 0.001));
-}
+
 
 
 let linea = ()=>{ 
@@ -133,3 +137,5 @@ let linea = ()=>{
   strokeWeight: 2
   });
 }
+
+const valores = valores

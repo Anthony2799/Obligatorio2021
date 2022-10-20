@@ -2,7 +2,7 @@ from envio.clases.group import Grupo
 from envio.clases.pago_normal import pago_normal
 
 
-class pago:
+class grupos_cliente:
     estrategia: Grupo
 
     def setStrategy(self, estrategia: Grupo = None) -> None:
